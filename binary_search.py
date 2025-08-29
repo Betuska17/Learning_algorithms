@@ -20,3 +20,4 @@ def binary_search(array, item):
 
 my_lst = [1,2,3,4,5,6,7,8,9,10]
 print(binary_search(my_lst,3))
+#Heloo turan
