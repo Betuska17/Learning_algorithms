@@ -21,3 +21,20 @@ def finding_number(phonebook, name):
 my_phonebook = [('Alberto' , 5555) , ('Turan', 44444) , ('Jake' , 33333)]  
 phone = (finding_number(my_phonebook, 'Jake'))
 
+
+
+###############################################################################
+
+#Ejercico donde tengo un numero y tengo que encontrar el nombre de la persona
+#Tengo que iterar en todo el phonebook
+
+def finding_name(phonebook, phone):
+    for name, number in phonebook:
+        if phone == number:
+            return name
+
+my_phonebook = [('Alberto' , 5555) , ('Turan', 44444) , ('Jake' , 33333)]  
+print(finding_name(my_phonebook,33333))
+
+
+
