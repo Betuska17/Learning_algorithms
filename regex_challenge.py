@@ -67,7 +67,8 @@ import re
 from my_colors import MY_COLORS as COLORS
 
 print(f"{COLORS.GREEN}-------------------------------------------------------------------------------{COLORS.END}")
-totes = input('Write tote numbers, once you finish enter done\n').strip().replace('\n', ' ').replace('\r',' ')
+print('Write tote numbers (paste and press Ctrl+D when done):')
+totes = ' '.join(sys.stdin.read().split()).strip()
 print(f"{COLORS.GREEN}-------------------------------------------------------------------------------{COLORS.END}")
 
 totes_detected = re.findall(r"\bAC\d{8,}", totes)
