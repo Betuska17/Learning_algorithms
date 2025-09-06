@@ -56,3 +56,52 @@ else:
         print(f"'{tote}',")
 
 
+########################################################################################################
+
+
+
+#!/usr/bin/python3
+import os
+import sys
+import re
+from my_colors import MY_COLORS as COLORS
+
+print(f"{COLORS.GREEN}-------------------------------------------------------------------------------{COLORS.END}")
+totes = input('Write tote numbers, once you finish enter done\n').strip().replace('\n', ' ').replace('\r',' ')
+print(f"{COLORS.GREEN}-------------------------------------------------------------------------------{COLORS.END}")
+
+totes_detected = re.findall(r"\bAC\d{8,}", totes)
+
+if totes_detected:
+    lst = totes_detected
+else:
+    replaced = totes.replace(',',' ')
+    lst = replaced.split()
+print(f"{COLORS.RED}-------------------------------------------------------------------------------{COLORS.END}")
+send = input('Want to send this totes?\n')
+print(f"{COLORS.RED}-------------------------------------------------------------------------------{COLORS.END}")
+
+if send.lower() in ['yes' , 'y']:
+    print(f"{COLORS.PURPLE}-------------------------------------------------------------------------------{COLORS.END}")
+    target = input("Insert Target: \n")
+    print(f"{COLORS.PURPLE}-------------------------------------------------------------------------------{COLORS.END}")
+    osrid = os.environ['OSR_ID']
+    #osrid = osrid[-1]
+
+    #osr = int(input('Osr number: \n'))
+    for tote in lst:
+        command = f"get_tray --tray {tote} --target {target} --osr-id {osrid}"
+        run = os.system(command)
+        print(f'Running: {command}')
+else:
+    for tote in lst:
+        print("'" + tote + "',")
+
+
+
+AC30031160
+AC30026421
+AC30005145
+AC30036460
+AC30126233
+
