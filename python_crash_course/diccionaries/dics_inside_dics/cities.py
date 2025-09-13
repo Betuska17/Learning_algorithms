@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 cities = {
     'japon' : {'pais' : 'tokio', 
                'poblacion': '37.7  millones',
@@ -15,3 +16,6 @@ cities = {
 
 for city, value in cities.items():
     print(f"La ciudad de {city.title()} esta en {value['pais'].title()}, tiene una poblacion de {value['poblacion']}, su fun fact es que: {value['fact']}")
+
+
+print("running from my terminal")
