@@ -1,0 +1,10 @@
+No tenemos que escribir classes desde cero todas las veces,
+Si la clases que estas escribiendo es una version de otra que 
+ya tengo escrita, se puede usar inheritance, que automaticamente
+toma todos los metos y atributos de la primer clase 
+
+parent class --> La clase original
+child class --> La clase nueva
+
+la child class toma todos los atributos y metodos de la clase
+padre, pero puede definir nuevos metodos y atributos por si sola
