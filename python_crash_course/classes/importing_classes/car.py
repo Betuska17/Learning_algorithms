@@ -22,29 +22,23 @@ class Car: #Defino el nombre de mi class car
 
 """Agrego una clase para la bateria, en vez de ponerla en un metodo, revisar la linea 34 para el ejemplo"""
 class Baterry(): #creo una clase para la bateria
-    def __init__(self, battery_size = 75):
+    def __init__(self, battery_size = 70):
         self.battery_size = battery_size
-    
     def describe_battery(self):
         print(f"This car has a {str(self.battery_size)}-kWh battery.")
         
     #Con la nueva class de bateria la podemos detallar tanto como queramos
 
     def get_range(self):
-        if self.battery_size == 75:
-            range = 260
-        elif self.battery_size == 100:
-            range = 315
+        if self.battery_size == 70:
+            range = 240
+        elif self.battery_size == 85:
+            range = 270
         
         message = "This car can go approximately " + str(range)
         message += " miles on a full charge"
         print(message)
-    
-    def upgrade_battery(self):
-        if self.battery_size != 100:
-            self.battery_size = 100
-        else:
-            pass
+        
 
 
 ## Agrego una child class
@@ -57,11 +51,28 @@ class ElectricCar(Car): #creamos la clase child, con la clase padre siempre incl
         
         #agregando los atributos de la child class
         self.battery = Baterry() 
+        """Esta linea le dice a python que cree un nuevo instance de baterry con un valor inicial de 70 y lo guarde en self.battery 
+        esto se va a ejecutar cada que el init method se llame tendremos una bateria creada en automatico"""
+   
+    """Cuando se programa en el mundo real se pueden agregar muchos argumentos y a veces es mejor agregar mini class para eso 
+    en la parte de arriba cree el metodo decribr battery, tambien  lo puedo hacer de esta manera
+     def describe_batterty(self):
+         mostrar el size que tiene la bateria
+         print(f"This car has a {str(self.battery_size)}-kWh battery.")
+    """
 
 
-my_tesla = ElectricCar('tesla', 'model s', 2016) #cree una instance de ElectriCar
-print(my_tesla.get_descriptive_name())
-my_tesla.battery.describe_battery()
-my_tesla.battery.get_range()
-my_tesla.battery.upgrade_battery()
-my_tesla.battery.get_range()
+
+
+# my_tesla = ElectricCar('tesla', 'model s', 2016) #cree una instance de ElectriCar
+# print(my_tesla.get_descriptive_name())
+# my_tesla.battery.describe_battery()
+# my_tesla.battery.get_range()
+
+"""
+super().__init__(make, model, year) --> Esta linea le dice a python que llame el __init__()
+method de ElectricCars parent class, lo que le da a ElectricCar instace todos los atributos
+de su clase padre
+El nombre super viene de de llamar a la clase padre superclass
+y a la clase hija subclass
+"""
