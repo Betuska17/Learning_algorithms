@@ -6,9 +6,10 @@ with open('pi_digits.txt') as file_object:
 
 
 
-
+"""
 >>> /home/codespace/.python/current/bin/python /workspaces/Learning_algorithms/python_crash_course/files_and_exceptions/file_reader.py
   File "<stdin>", line 1
     /home/codespace/.python/current/bin/python /workspaces/Learning_algorithms/python_crash_course/files_and_exceptions/file_reader.py
     ^
 SyntaxError: invalid syntax
+"""
