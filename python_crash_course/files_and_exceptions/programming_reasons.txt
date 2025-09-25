@@ -4,7 +4,7 @@ I like to code because is interesting
 
 
 <<<<<<< HEAD
-=======
+=======f
 hhh
 
 >>>>>>> refs/remotes/origin/main
