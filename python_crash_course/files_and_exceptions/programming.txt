@@ -7,12 +7,12 @@ select
  sto.loading_unit_code as loading_unit,
  listagg(sto.product_code, ', ') within group (order by sto.product_code) as product_codes,
  case
-    when substr(prj_host_location_code,5,2) between 04 and 12 then 'IFM1'
-    when substr(prj_host_location_code,5,2) between 13 and 21 then 'IFM2'
-    when substr(prj_host_location_code,5,2) between 22 and 30 then 'IFM3'
-    when substr(prj_host_location_code,5,2) between 31 and 39 then 'IFM4'
-    when substr(prj_host_location_code,5,2) between 40 and 48 then 'IFM5'
-    when substr(prj_host_location_code,5,2) between 49 and 57 then 'IFM6'
+    when to_number(substr(prj_host_location_code,5,2)) between 04 and 12 then 'IFM1'
+    when to_number(substr(prj_host_location_code,5,2)) between 13 and 21 then 'IFM2'
+    when to_number(substr(prj_host_location_code,5,2)) between 22 and 30 then 'IFM3'
+    when to_number(substr(prj_host_location_code,5,2)) between 31 and 39 then 'IFM4'
+    when to_number(substr(prj_host_location_code,5,2)) between 40 and 48 then 'IFM5'
+    when to_number(substr(prj_host_location_code,5,2)) between 49 and 57 then 'IFM6'
     else 'no ifm'
     end as IFM
  --min(lde.last_location_change) 
@@ -29,12 +29,12 @@ where sta_stock_area.STATION_NAME like '%OSRM01%'
  --and touched_2 = 'N'
 group by  sto.loading_unit_code,
     case
-    when substr(prj_host_location_code,5,2) between 04 and 12 then 'IFM1'
-    when substr(prj_host_location_code,5,2) between 13 and 21 then 'IFM2'
-    when substr(prj_host_location_code,5,2) between 22 and 30 then 'IFM3'
-    when substr(prj_host_location_code,5,2) between 31 and 39 then 'IFM4'
-    when substr(prj_host_location_code,5,2) between 40 and 48 then 'IFM5'
-    when substr(prj_host_location_code,5,2) between 49 and 57 then 'IFM6'
+    when to_number(substr(prj_host_location_code,5,2)) between 04 and 12 then 'IFM1'
+    when to_number(substr(prj_host_location_code,5,2)) between 13 and 21 then 'IFM2'
+    when to_number(substr(prj_host_location_code,5,2)) between 22 and 30 then 'IFM3'
+    when to_number(substr(prj_host_location_code,5,2)) between 31 and 39 then 'IFM4'
+    when to_number(substr(prj_host_location_code,5,2)) between 40 and 48 then 'IFM5'
+    when to_number(substr(prj_host_location_code,5,2)) between 49 and 57 then 'IFM6'
     else 'no ifm'
     end
 order by sto.loading_unit_code;
