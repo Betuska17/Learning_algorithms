@@ -3,19 +3,3 @@ I like to code because is interesting
 
 
 
-select sto.stock_id,
-       sto.product_bundle_id AS pbl_id,
-       sto.product_code AS prod_code,
-       sta_stock_area.station_name AS stock_area,
-       sto.location_code AS location,
-       sto.loading_unit_code AS loading_unit,
-       lde.LAST_LOCATION_CHANGE AS last_loc_update
-FROM v_stock sto
-JOIN loading_unit lou ON lou.loading_unit_id = sto.loading_unit_id
-JOIN location loc ON loc.location_id = lou.location_id
-JOIN station sta ON sta.station_id = loc.station_id
-JOIN station sta_stock_area ON sta_stock_area.station_id = sto.stock_area_station_id
-JOIN loading_unit_event lde ON lde.LOADING_UNIT_CODE = lou.LOADING_UNIT_CODE
-WHERE sta_stock_area.STATION_NAME LIKE '%OSRM01%'
-  AND lde.LAST_LOCATION_CHANGE <= ADD_MONTHS(SYSDATE, -12)
-ORDER BY prod_code, location;
