@@ -1,0 +1,7 @@
+In Python you can create lists
+In Python you can create loops
+In Python you can ask for inputs
+In Python you can create classes
+In Python you can create instances of a class
+In Python you can create methods of a class
+In Python you can work with strings

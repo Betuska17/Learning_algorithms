@@ -1,15 +1,13 @@
-#abro pi_digits.txt y le damos el nombre de file_object
-with open('pi_digits.txt') as file_object:
+#abro pi_digits.txt y le damos el nombre de file_object puse al path completo para que lo pueda correr desde donde sea en la terminal
+#si no lo pongo completo tengo que abrir esa carpeta en la terminal
+#tambien se puede poner en una variable
+
+filepath = '/workspaces/Learning_algorithms/python_crash_course/files_and_exceptions/pi_digits.txt'
+with open(filepath) as file_object:
     #guardo en contents el resultado de leer file_object
     contents = file_object.read()
-    print(contents)
+    #Quito el espacio en blanco de la derecha
+    print(contents.rstrip())
 
 
 
-"""
->>> /home/codespace/.python/current/bin/python /workspaces/Learning_algorithms/python_crash_course/files_and_exceptions/file_reader.py
-  File "<stdin>", line 1
-    /home/codespace/.python/current/bin/python /workspaces/Learning_algorithms/python_crash_course/files_and_exceptions/file_reader.py
-    ^
-SyntaxError: invalid syntax
-"""
