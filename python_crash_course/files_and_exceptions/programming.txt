@@ -4,43 +4,4 @@ I also love finding meaning in large datasets
 I love creating apps that can run in browser
 
 
-SELECT 
-  sto.loading_unit_code AS loading_unit,
-  LISTAGG(sto.product_code, ', ') WITHIN GROUP (ORDER BY sto.product_code) AS product_codes,
-  CASE
-    WHEN REGEXP_LIKE(SUBSTR(prj_host_location_code, 5, 2), '^\d{2}$') THEN
-      CASE
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 4 AND 12 THEN 'IFM1'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 13 AND 21 THEN 'IFM2'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 22 AND 30 THEN 'IFM3'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 31 AND 39 THEN 'IFM4'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 40 AND 48 THEN 'IFM5'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 49 AND 57 THEN 'IFM6'
-        ELSE 'no ifm'
-      END
-    ELSE 'no ifm'
-  END AS IFM
-FROM v_stock sto
-JOIN loading_unit lou ON lou.loading_unit_id = sto.loading_unit_id
-JOIN location loc ON loc.location_id = lou.location_id
-JOIN station sta ON sta.station_id = loc.station_id
-JOIN station sta_stock_area ON sta_stock_area.station_id = sto.stock_area_station_id
-JOIN loading_unit_event lde ON lde.LOADING_UNIT_CODE = lou.LOADING_UNIT_CODE
-WHERE sta_stock_area.STATION_NAME LIKE '%OSRM01%'
-  AND lde.LAST_LOCATION_CHANGE <= ADD_MONTHS(SYSDATE, -12)
-GROUP BY 
-  sto.loading_unit_code,
-  CASE
-    WHEN REGEXP_LIKE(SUBSTR(prj_host_location_code, 5, 2), '^\d{2}$') THEN
-      CASE
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 4 AND 12 THEN 'IFM1'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 13 AND 21 THEN 'IFM2'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 22 AND 30 THEN 'IFM3'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 31 AND 39 THEN 'IFM4'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 40 AND 48 THEN 'IFM5'
-        WHEN TO_NUMBER(SUBSTR(prj_host_location_code, 5, 2)) BETWEEN 49 AND 57 THEN 'IFM6'
-        ELSE 'no ifm'
-      END
-    ELSE 'no ifm'
-  END
-ORDER BY sto.loading_unit_code;
+
