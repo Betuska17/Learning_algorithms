@@ -21,3 +21,21 @@ for palabra in frecuencia:
         hapax += 1
 
 print("Cantidad de hápax en el documento:", hapax)
+
+
+
+select transporter_name, transporter_pos, max(tsth_date),
+case 
+when transporter_state = -5 then 'suspended'
+when transporter_state = 10 then 'maintence'
+when transporter_state = -10 then 'disabled'
+end as state 
+from transporter_locations
+join locations on tl_loc_id = loc_id
+join transporters on tl_transporter_id = transporter_id
+join transporter_state_trans_hist on tl_transporter_id = tsth_transporter_id
+where transporter_name like 'SHUT%'
+and transporter_osr_id = 1 
+and transporter_pos like '%C0%'
+and transporter_state != 0
+group by transporter_name;
