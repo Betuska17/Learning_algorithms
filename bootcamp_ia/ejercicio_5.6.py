@@ -21,5 +21,3 @@ for palabra in frecuencia:
         hapax += 1
 
 print("Cantidad de hápax en el documento:", hapax)
-
-
