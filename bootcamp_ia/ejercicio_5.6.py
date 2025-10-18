@@ -31,3 +31,6 @@ print("Cantidad de hápax en el documento:", hapax)
         print(f"{shuttle} {state} at {location} since --> {time}")
 
 [('SHUT0316', 'S01.001.15.01.C01', datetime.datetime(2025, 9, 4, 4, 56, 36), 'suspended')]
+
+
+SHUT1731 suspended at S01.016.45.01.C01 since --> 2025-10-18 11:20:07
