@@ -21,3 +21,13 @@ for palabra in frecuencia:
         hapax += 1
 
 print("Cantidad de hápax en el documento:", hapax)
+
+
+    for value in output:
+        shuttle = value[0]
+        location = value[1]
+        state = value[3]
+        time = value[2]
+        print(f"{shuttle} {state} at {location} since --> {time}")
+
+[('SHUT0316', 'S01.001.15.01.C01', datetime.datetime(2025, 9, 4, 4, 56, 36), 'suspended')]
