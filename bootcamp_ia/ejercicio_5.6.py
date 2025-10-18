@@ -1,4 +1,4 @@
-lo with open("archivo.txt", "r", encoding="utf-8") as archivo:
+with open("archivo.txt", "r", encoding="utf-8") as archivo:
     texto = archivo.read()
 
 import string
