@@ -124,6 +124,29 @@ WHERE tr.transporter_name LIKE 'SHUT%'
   AND tr.transporter_osr_id = 1 
   AND tl.transporter_pos LIKE '%C0%'
   AND ls.transporter_state != 0;
+  
+  
+  
+ultima 
+
+
+SELECT transporter_name, transporter_pos,
+  MAX(tsth_date),
+  CASE 
+    WHEN transporter_state = -5 THEN 'suspended'
+    WHEN transporter_state = 10 THEN 'maintence'
+    WHEN transporter_state = -10 THEN 'disabled'
+  END AS state
+FROM transporter_locations
+JOIN locations ON tl_loc_id = loc_id
+JOIN transporters ON tl_transporter_id = transporter_id
+JOIN transporter_state_trans_hist ON tl_transporter_id = tsth_transporter_id
+WHERE transporter_name LIKE 'SHUT%'
+  AND transporter_osr_id = 1
+  AND transporter_pos LIKE '%C0%'
+  AND transporter_state != 0
+GROUP BY transporter_name, transporter_pos, transporter_state;
+
 
 
 
