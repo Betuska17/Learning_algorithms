@@ -53,3 +53,40 @@ WHERE transporter_name LIKE 'SHUT%'
   AND transporter_osr_id = 1 
   AND transporter_pos LIKE '%C0%'
   AND estado_reciente.transporter_state != 0;
+  
+  
+  
+  
+  
+WITH ultima_fecha AS (
+  SELECT tsth_transporter_id, MAX(tsth_date) AS fecha_última
+  FROM transporter_state_trans_hist
+  GROUP BY tsth_transporter_id
+),
+estado_reciente AS (
+  SELECT th.tsth_transporter_id, th.transporter_state, th.tsth_date
+  FROM transporter_state_trans_hist th
+  JOIN ultima_fecha uf
+    ON th.tsth_transporter_id = uf.tsth_transporter_id
+   AND th.tsth_date = uf.fecha_última
+)
+SELECT 
+  tr.transporter_name,
+  tl.transporter_pos,
+  er.tsth_date,
+  CASE 
+    WHEN er.transporter_state = -5 THEN 'suspended'
+    WHEN er.transporter_state = 10 THEN 'maintence'
+    WHEN er.transporter_state = -10 THEN 'disabled'
+    ELSE 'unknown'
+  END AS state
+FROM transporter_locations tl
+JOIN locations l ON tl.tl_loc_id = l.loc_id
+JOIN transporters tr ON tl.tl_transporter_id = tr.transporter_id
+JOIN estado_reciente er ON tl.tl_transporter_id = er.tsth_transporter_id
+WHERE tr.transporter_name LIKE 'SHUT%'
+  AND tr.transporter_osr_id = 1 
+  AND tl.transporter_pos LIKE '%C0%'
+  AND er.transporter_state != 0;
+
+
